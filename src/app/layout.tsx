@@ -19,6 +19,8 @@ export default async function RootLayout({
 		host,
 		isSatellite,
 		rootDomain: process.env.NEXT_PUBLIC_ROOT_DOMAIN,
+		// iterate over headersList
+		headers: Object.fromEntries(headersList.entries()),
 	});
 
 	return (
