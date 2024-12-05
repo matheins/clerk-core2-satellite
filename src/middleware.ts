@@ -84,6 +84,7 @@ export default clerkMiddleware(
         console.log("clerk middleware", {
             host,
             domain,
+            rootDomain: process.env.NEXT_PUBLIC_ROOT_DOMAIN,
             isSatellite,
         });
 

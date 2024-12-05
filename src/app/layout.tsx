@@ -18,6 +18,7 @@ export default async function RootLayout({
 	console.log("root layout", {
 		host,
 		isSatellite,
+		rootDomain: process.env.NEXT_PUBLIC_ROOT_DOMAIN,
 	});
 
 	return (
