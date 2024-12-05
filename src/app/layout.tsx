@@ -1,7 +1,6 @@
 import { ClerkProvider, SignedIn, UserButton } from "@clerk/nextjs";
 import "./globals.css";
 import { satelliteDomain } from "@/middleware";
-import { getApexDomainFromHost } from "@/utils";
 import { headers } from "next/headers";
 
 export default async function RootLayout({
