@@ -76,14 +76,16 @@ export default clerkMiddleware(
     },
     (req) => {
         const host = req.nextUrl.host;
-
-        console.log("clerkAuth", host);
-
         const isSatellite = !process.env.NEXT_PUBLIC_ROOT_DOMAIN!.includes(
             host,
         );
+        const domain = getApexDomainFromHost(host);
 
-        console.log("isSatellite", isSatellite);
+        console.log("clerk middleware", {
+            host,
+            domain,
+            isSatellite,
+        });
 
         return {
             isSatellite: isSatellite,

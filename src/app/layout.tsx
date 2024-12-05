@@ -18,7 +18,6 @@ export default async function RootLayout({
 	console.log("root layout", {
 		host,
 		isSatelite,
-		headers: headersList.entries(),
 	});
 
 	return (
