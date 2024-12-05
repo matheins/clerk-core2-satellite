@@ -89,9 +89,7 @@ export default clerkMiddleware(
 
         return {
             isSatellite: isSatellite ?? undefined,
-            domain: isSatellite
-                ? `https://${getApexDomainFromHost(host)}`
-                : undefined,
+            domain: isSatellite ? `https://${host}}` : undefined,
         };
     },
 );
