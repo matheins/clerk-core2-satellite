@@ -1,5 +1,6 @@
 import { ClerkProvider, SignedIn, UserButton } from "@clerk/nextjs";
 import "./globals.css";
+import { satelliteDomain } from "@/middleware";
 
 export default function RootLayout({
 	children,
@@ -7,7 +8,10 @@ export default function RootLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<ClerkProvider signInUrl="/login">
+		<ClerkProvider
+			signInUrl="/login"
+			allowedRedirectOrigins={[satelliteDomain]}
+		>
 			<html lang="en">
 				<body>
 					<SignedIn>
