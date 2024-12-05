@@ -13,11 +13,12 @@ export default async function RootLayout({
 	const host = getApexDomainFromHost(
 		headersList.get("x-forwarded-host") ?? process.env.NEXT_PUBLIC_ROOT_DOMAIN!,
 	);
-	const isSatelite = !host.includes(process.env.NEXT_PUBLIC_ROOT_DOMAIN!);
+	const isSatelite = !process.env.NEXT_PUBLIC_ROOT_DOMAIN!.includes(host);
 
 	console.log("root layout", {
 		host,
 		isSatelite,
+		headers: headersList.entries(),
 	});
 
 	return (

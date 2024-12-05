@@ -79,8 +79,8 @@ export default clerkMiddleware(
 
         console.log("clerkAuth", host);
 
-        const isSatellite = !host.includes(
-            process.env.NEXT_PUBLIC_ROOT_DOMAIN!,
+        const isSatellite = !process.env.NEXT_PUBLIC_ROOT_DOMAIN!.includes(
+            host,
         );
 
         console.log("isSatellite", isSatellite);
