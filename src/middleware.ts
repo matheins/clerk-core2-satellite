@@ -22,7 +22,7 @@ const isPublicRoute = createRouteMatcher([
 // For this example, we'll just mock it and say we only have one satellite domain.
 // In our real implementation, there are dozens of users with custom domains and we can only tell as soon as the user is signed in.
 const mockUsersWithCustomDomains = ["user_1", "user_2"];
-const satelliteDomain = "satellite.com";
+const satelliteDomain = "satellite.stbrd.com";
 
 const mockGetUserCustomDomain = (userId: string) => {
     if (mockUsersWithCustomDomains.includes(userId)) {
