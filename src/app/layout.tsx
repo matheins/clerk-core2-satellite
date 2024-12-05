@@ -24,7 +24,10 @@ export default async function RootLayout({
 	return (
 		<ClerkProvider
 			allowedRedirectOrigins={[satelliteDomain]}
-			domain={host}
+			domain={(url) => {
+				console.log("root layout clerk host", url.host);
+				return url.host;
+			}}
 			isSatellite={isSatelite}
 		>
 			<html lang="en">
