@@ -27,6 +27,7 @@ export default async function RootLayout({
 			// domain={(url) => url.host}
 			domain={`https://${host}`}
 			isSatellite={isSatellite}
+			dynamic
 		>
 			<html lang="en">
 				<body>
