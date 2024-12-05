@@ -10,17 +10,14 @@ export default async function RootLayout({
 	children: React.ReactNode;
 }) {
 	const headersList = await headers();
-	const host = getApexDomainFromHost(
-		headersList.get("x-forwarded-host") ?? process.env.NEXT_PUBLIC_ROOT_DOMAIN!,
-	);
-	const isSatellite = !process.env.NEXT_PUBLIC_ROOT_DOMAIN!.includes(host);
+	const host =
+		headersList.get("x-forwarded-host") ?? process.env.NEXT_PUBLIC_ROOT_DOMAIN!;
+	const isSatellite = !host.includes(process.env.NEXT_PUBLIC_ROOT_DOMAIN!);
 
 	console.log("root layout", {
 		host,
 		isSatellite,
 		rootDomain: process.env.NEXT_PUBLIC_ROOT_DOMAIN,
-		// iterate over headersList
-		headers: Object.fromEntries(headersList.entries()),
 	});
 
 	return (
@@ -28,11 +25,7 @@ export default async function RootLayout({
 			allowedRedirectOrigins={[satelliteDomain]}
 			// does not work: Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server"
 			// domain={(url) => url.host}
-			domain={
-				isSatellite
-					? `https://${satelliteDomain}`
-					: `https://${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`
-			}
+			domain={`https://${host}`}
 			isSatellite={isSatellite}
 		>
 			<html lang="en">
