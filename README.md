@@ -10,14 +10,19 @@ setup. Since we are trying to upgrade to core v2 we are running into errors.
 
 ### My Test Setup
 
-- Nextjs App
+- Nextjs 15 App
+- Clerk w/ dynamic mode
+- deployed via Vercel
 - Primary Domain: clerk-core2-satellite.vercel.app
-- Satellite Domain: satellite.stbrd.com
+- Satellite Domain: satellite.stbrd.com (configured in vercel and clerk)
 
 The Nextjs App redirects the user to a satellite domain if its configured for
 the user (hardcoded in middleware). The login is always on the primary domain.
 
 ### Error
+
+> **Important:** this is a production only issue. You need to test it in a
+> deployed setup.
 
 Scenario 1: Signin in with a user that has **no satellite** configured. Works
 fine.
