@@ -32,6 +32,7 @@ export default async function RootLayout({
 				isSatellite ? domain : (process.env.NEXT_PUBLIC_ROOT_DOMAIN as string)
 			}
 			isSatellite={isSatellite}
+			afterSignOutUrl={process.env.NEXT_PUBLIC_CLERK_SIGN_IN_URL as string}
 		>
 			<html lang="en">
 				<body>

@@ -8,9 +8,7 @@ export default async function RootLayout({
 }) {
 	return (
 		<ClerkProvider
-			afterSignOutUrl={(process.env.NEXT_PUBLIC_ROOT_DOMAIN as string).concat(
-				"/login",
-			)}
+			afterSignOutUrl={process.env.NEXT_PUBLIC_CLERK_SIGN_IN_URL as string}
 		>
 			<html lang="en">
 				<body>
