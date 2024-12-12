@@ -69,7 +69,7 @@ export default clerkMiddleware(
                 domain.includes("localhost")
                 ? "http://"
                 : "https://"
-        }${userCustomDomain ?? domain}`;
+        }${userCustomDomain ?? process.env.NEXT_PUBLIC_ROOT_DOMAIN as string}`;
 
         // if user is on wrong domain, redirect to correct domain
         if (userCustomDomain && userCustomDomain !== domain) {
