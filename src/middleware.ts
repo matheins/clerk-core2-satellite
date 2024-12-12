@@ -52,6 +52,7 @@ export default clerkMiddleware(
         const { domain, path, fullPath, searchParams } = parse(request);
 
         console.log({
+            host,
             domain,
             path,
             fullPath,
@@ -65,10 +66,10 @@ export default clerkMiddleware(
                 domain.includes("localhost")
                 ? "http://"
                 : "https://"
-        }${userCustomDomain ?? host}`;
+        }${userCustomDomain ?? domain}`;
 
         // if user is on wrong domain, redirect to correct domain
-        if (userCustomDomain && userCustomDomain !== host) {
+        if (userCustomDomain && userCustomDomain !== domain) {
             console.log("redirecting to correct domain", {
                 nextDomain,
                 fullPath,
@@ -84,7 +85,7 @@ export default clerkMiddleware(
         }
 
         return NextResponse.rewrite(
-            new URL(`/${userCustomDomain ?? host}${fullPath}`, request.url),
+            new URL(`/${userCustomDomain ?? domain}${fullPath}`, request.url),
         );
     },
     (req) => {
