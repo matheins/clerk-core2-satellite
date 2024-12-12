@@ -108,9 +108,7 @@ export default clerkMiddleware(
 
         return {
             isSatellite: isSatellite ?? undefined,
-            domain: isSatellite
-                ? `https://${domain}`
-                : `https://${process.env.NEXT_PUBLIC_ROOT_DOMAIN}`,
+            domain: domain,
         };
     },
 );

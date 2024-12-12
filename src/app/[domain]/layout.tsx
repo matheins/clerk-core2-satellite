@@ -28,9 +28,7 @@ export default async function RootLayout({
 		<ClerkProvider
 			// does not work: Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server"
 			// domain={(url) => url.host}
-			domain={
-				isSatellite ? domain : (process.env.NEXT_PUBLIC_ROOT_DOMAIN as string)
-			}
+			domain={domain}
 			isSatellite={isSatellite}
 			afterSignOutUrl={process.env.NEXT_PUBLIC_CLERK_SIGN_IN_URL as string}
 		>
