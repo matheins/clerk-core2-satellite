@@ -54,10 +54,9 @@ export default clerkMiddleware(
         if (!userId) return redirectToSignIn();
 
         const host = request.nextUrl.host;
-        const { path, domain, fullPath, searchParams } = parse(request);
+        const { path, fullPath, searchParams } = parse(request);
 
         console.log({
-            domain,
             path,
             fullPath,
             searchParams,
@@ -67,7 +66,7 @@ export default clerkMiddleware(
 
         const nextDomain = `${
             process.env.NODE_ENV === "development" ||
-                domain.includes("localhost")
+                host.includes("localhost")
                 ? "http://"
                 : "https://"
         }${userCustomDomain ?? process.env.NEXT_PUBLIC_ROOT_DOMAIN as string}`;
