@@ -40,7 +40,14 @@ const mockGetUserCustomDomain = (userId: string) => {
 export default clerkMiddleware(
     async (auth, request) => {
         if (isPublicRoute(request)) return;
-        await auth.protect();
+        await auth.protect({
+            unauthenticatedUrl: new URL(
+                "/login",
+                "https://".concat(
+                    process.env.NEXT_PUBLIC_ROOT_DOMAIN as string,
+                ),
+            ).toString(),
+        });
 
         const { userId, redirectToSignIn } = await auth();
 
