@@ -89,7 +89,7 @@ export default clerkMiddleware(
         }
 
         return NextResponse.rewrite(
-            new URL(`/${userCustomDomain ?? domain}${fullPath}`, request.url),
+            new URL(`/${userCustomDomain ?? host}${fullPath}`, request.url),
         );
     },
     (req) => {
