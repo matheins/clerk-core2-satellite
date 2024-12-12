@@ -49,11 +49,10 @@ export default clerkMiddleware(
         if (!userId) return redirectToSignIn();
 
         const host = request.nextUrl.host;
-        const { domain, path, fullPath, searchParams } = parse(request);
+        const { path, fullPath, searchParams } = parse(request);
 
         console.log({
             host,
-            domain,
             path,
             fullPath,
             searchParams,
@@ -63,13 +62,13 @@ export default clerkMiddleware(
 
         const nextDomain = `${
             process.env.NODE_ENV === "development" ||
-                domain.includes("localhost")
+                host.includes("localhost")
                 ? "http://"
                 : "https://"
-        }${userCustomDomain ?? domain}`;
+        }${userCustomDomain ?? host}`;
 
         // if user is on wrong domain, redirect to correct domain
-        if (userCustomDomain && userCustomDomain !== domain) {
+        if (userCustomDomain && userCustomDomain !== host) {
             console.log("redirecting to correct domain", {
                 nextDomain,
                 fullPath,
@@ -85,7 +84,7 @@ export default clerkMiddleware(
         }
 
         return NextResponse.rewrite(
-            new URL(`/${userCustomDomain ?? domain}${fullPath}`, request.url),
+            new URL(`/${userCustomDomain ?? host}${fullPath}`, request.url),
         );
     },
     (req) => {
