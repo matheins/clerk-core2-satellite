@@ -1,7 +1,7 @@
 import { ClerkProvider, SignedIn, UserButton } from "@clerk/nextjs";
-import "./globals.css";
-import { satelliteDomain } from "@/middleware";
+import "../globals.css";
 import { headers } from "next/headers";
+import { getApexDomainFromHost } from "@/utils";
 
 export default async function RootLayout({
 	children,
@@ -10,8 +10,11 @@ export default async function RootLayout({
 }) {
 	const headersList = await headers();
 	const host =
-		headersList.get("x-forwarded-host") ?? process.env.NEXT_PUBLIC_ROOT_DOMAIN!;
-	const isSatellite = !host.includes(process.env.NEXT_PUBLIC_ROOT_DOMAIN!);
+		headersList.get("x-forwarded-host") ??
+		(process.env.NEXT_PUBLIC_ROOT_DOMAIN as string);
+	const isSatellite = !host.includes(
+		process.env.NEXT_PUBLIC_ROOT_DOMAIN as string,
+	);
 
 	console.log("root layout", {
 		host,
@@ -19,14 +22,16 @@ export default async function RootLayout({
 		rootDomain: process.env.NEXT_PUBLIC_ROOT_DOMAIN,
 	});
 
+	const domain = getApexDomainFromHost(host);
+
 	return (
 		<ClerkProvider
-			allowedRedirectOrigins={[satelliteDomain]}
 			// does not work: Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server"
 			// domain={(url) => url.host}
-			domain={`https://${host}`}
+			domain={
+				isSatellite ? domain : (process.env.NEXT_PUBLIC_ROOT_DOMAIN as string)
+			}
 			isSatellite={isSatellite}
-			dynamic
 		>
 			<html lang="en">
 				<body>

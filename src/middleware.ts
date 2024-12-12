@@ -82,9 +82,10 @@ export default clerkMiddleware(
     },
     (req) => {
         const host = req.nextUrl.host;
-        const isSatellite = !process.env.NEXT_PUBLIC_ROOT_DOMAIN!.includes(
-            host,
-        );
+        const isSatellite = !(process.env.NEXT_PUBLIC_ROOT_DOMAIN as string)
+            .includes(
+                host,
+            );
         const domain = getApexDomainFromHost(host);
 
         console.log("clerk middleware", {
