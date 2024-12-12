@@ -53,6 +53,7 @@ export default clerkMiddleware(
 
         if (!userId) return redirectToSignIn();
 
+        const host = request.nextUrl.host;
         const { path, domain, fullPath, searchParams } = parse(request);
 
         console.log({
@@ -72,7 +73,7 @@ export default clerkMiddleware(
         }${userCustomDomain ?? process.env.NEXT_PUBLIC_ROOT_DOMAIN as string}`;
 
         // if user is on wrong domain, redirect to correct domain
-        if (userCustomDomain && userCustomDomain !== domain) {
+        if (userCustomDomain && userCustomDomain !== host) {
             console.log("redirecting to correct domain", {
                 nextDomain,
                 fullPath,
