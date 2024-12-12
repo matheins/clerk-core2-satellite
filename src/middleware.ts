@@ -41,12 +41,7 @@ export default clerkMiddleware(
     async (auth, request) => {
         if (isPublicRoute(request)) return;
         await auth.protect({
-            unauthenticatedUrl: new URL(
-                "/login",
-                "https://".concat(
-                    process.env.NEXT_PUBLIC_ROOT_DOMAIN as string,
-                ),
-            ).toString(),
+            unauthenticatedUrl: process.env.NEXT_PUBLIC_CLERK_SIGN_IN_URL,
         });
 
         const { userId, redirectToSignIn } = await auth();
@@ -69,7 +64,7 @@ export default clerkMiddleware(
                 host.includes("localhost")
                 ? "http://"
                 : "https://"
-        }${userCustomDomain ?? process.env.NEXT_PUBLIC_ROOT_DOMAIN as string}`;
+        }${userCustomDomain ?? host}`;
 
         // if user is on wrong domain, redirect to correct domain
         if (userCustomDomain && userCustomDomain !== host) {
@@ -93,9 +88,9 @@ export default clerkMiddleware(
     },
     (req) => {
         const host = req.nextUrl.host;
-        const isSatellite = !(process.env.NEXT_PUBLIC_ROOT_DOMAIN as string)
+        const isSatellite = !host
             .includes(
-                host,
+                process.env.NEXT_PUBLIC_ROOT_DOMAIN as string,
             );
         const domain = getApexDomainFromHost(host);
 
