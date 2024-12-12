@@ -73,6 +73,10 @@ export default clerkMiddleware(
 
         // if user is on wrong domain, redirect to correct domain
         if (userCustomDomain && userCustomDomain !== domain) {
+            console.log("redirecting to correct domain", {
+                nextDomain,
+                fullPath,
+            });
             return NextResponse.redirect(`${nextDomain}${fullPath}`);
         }
 
