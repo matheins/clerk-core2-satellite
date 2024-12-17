@@ -25,6 +25,7 @@ const isPublicRoute = createRouteMatcher([
 const mockUsersWithCustomDomains = [
     "user_2pnel0tog081y6yndsLmDw0hS5e",
     "user_2po4ooSYO2b1vM4g846F2R62x0Q",
+    "user_2qLonWjJAGEzSgwoMwhRKVfYRxC",
 ];
 // const mockUsersWithCustomDomains = [""];
 
