@@ -31,14 +31,7 @@ export default async function AuthProvider({
 			isSatellite={isSatellite ?? undefined}
 			afterSignOutUrl={process.env.NEXT_PUBLIC_CLERK_SIGN_IN_URL as string}
 		>
-			<html lang="en">
-				<body>
-					<SignedIn>
-						<UserButton />
-					</SignedIn>
-					{children}
-				</body>
-			</html>
+			{children}
 		</ClerkProvider>
 	);
 }
