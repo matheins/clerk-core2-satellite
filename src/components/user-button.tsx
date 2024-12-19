@@ -22,7 +22,7 @@ export function UserButton() {
 	const handleLogout = async () => {
 		// expect an error here
 		try {
-			await signOut();
+			await signOut({ redirectUrl: "/login" });
 		} catch (error) {
 			console.error("Error logging out:", error);
 		} finally {
