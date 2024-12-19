@@ -29,7 +29,7 @@ export function UserButton() {
 		<ClerkUserButton>
 			<ClerkUserButton.MenuItems>
 				<ClerkUserButton.Action
-					label="signOut"
+					label="Logout"
 					labelIcon={<DotIcon />}
 					onClick={() => handleLogout()}
 				/>
