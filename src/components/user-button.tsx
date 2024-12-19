@@ -20,8 +20,15 @@ export function UserButton() {
 	const { signOut } = useAuth();
 
 	const handleLogout = async () => {
-		await signOut();
-		window.location.href = process.env.NEXT_PUBLIC_CLERK_SIGN_IN_URL as string;
+		// expect an error here
+		try {
+			await signOut();
+		} catch (error) {
+			console.error("Error logging out:", error);
+		} finally {
+			window.location.href = process.env
+				.NEXT_PUBLIC_CLERK_SIGN_IN_URL as string;
+		}
 	};
 
 	return (
