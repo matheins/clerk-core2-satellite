@@ -1,7 +1,6 @@
-import { SignedIn } from "@clerk/nextjs";
+import { SignedIn, UserButton } from "@clerk/nextjs";
 import "./globals.css";
 import AuthProvider from "@/components/auth-provider";
-import { UserButton } from "@/components/user-button";
 
 export default async function RootLayout({
 	children,

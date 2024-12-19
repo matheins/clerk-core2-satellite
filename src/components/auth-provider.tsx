@@ -29,7 +29,7 @@ export default async function AuthProvider({
 			// domain={(url) => url.host}
 			domain={domain}
 			isSatellite={isSatellite}
-			afterSignOutUrl={process.env.NEXT_PUBLIC_CLERK_SIGN_IN_URL as string}
+			afterSignOutUrl={`${process.env.NEXT_PUBLIC_CLERK_SIGN_IN_URL as string}?redirect_url=${host}`}
 		>
 			{children}
 		</ClerkProvider>
