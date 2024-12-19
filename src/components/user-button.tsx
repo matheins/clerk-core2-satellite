@@ -1,7 +1,7 @@
 "use client";
 
 import { UserButton as ClerkUserButton, useAuth } from "@clerk/nextjs";
-import { redirect } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 const DotIcon = () => {
 	return (
@@ -18,10 +18,11 @@ const DotIcon = () => {
 
 export function UserButton() {
 	const { signOut } = useAuth();
+	const router = useRouter();
 
 	const handleLogout = async () => {
 		await signOut();
-		redirect(process.env.NEXT_PUBLIC_CLERK_SIGN_IN_URL as string);
+		router.refresh();
 	};
 
 	return (
