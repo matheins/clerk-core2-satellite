@@ -1,5 +1,6 @@
 import { ClerkProvider, SignedIn, UserButton } from "@clerk/nextjs";
 import "../globals.css";
+import AuthProvider from "@/components/auth-provider";
 
 export default async function RootLayout({
 	children,
@@ -7,9 +8,10 @@ export default async function RootLayout({
 	children: React.ReactNode;
 }) {
 	return (
-		<ClerkProvider
-			afterSignOutUrl={process.env.NEXT_PUBLIC_CLERK_SIGN_IN_URL as string}
-		>
+		// <ClerkProvider
+		// 	afterSignOutUrl={process.env.NEXT_PUBLIC_CLERK_SIGN_IN_URL as string}
+		// >
+		<AuthProvider>
 			<html lang="en">
 				<body>
 					<SignedIn>
@@ -18,6 +20,7 @@ export default async function RootLayout({
 					{children}
 				</body>
 			</html>
-		</ClerkProvider>
+		</AuthProvider>
+		// </ClerkProvider>
 	);
 }
