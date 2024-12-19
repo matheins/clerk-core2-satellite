@@ -22,7 +22,7 @@ export function UserButton() {
 
 	const handleLogout = async () => {
 		await signOut();
-		router.refresh();
+		router.replace(process.env.NEXT_PUBLIC_CLERK_SIGN_IN_URL as string);
 	};
 
 	return (
