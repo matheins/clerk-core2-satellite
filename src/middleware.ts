@@ -42,7 +42,8 @@ export default clerkMiddleware(
     async (auth, request) => {
         if (isPublicRoute(request)) return;
         await auth.protect({
-            unauthenticatedUrl: process.env.NEXT_PUBLIC_CLERK_SIGN_IN_URL,
+            unauthenticatedUrl:
+                `${process.env.NEXT_PUBLIC_CLERK_SIGN_IN_URL}?redirect_url=${request.nextUrl.origin}`,
         });
 
         const { userId, redirectToSignIn } = await auth();
