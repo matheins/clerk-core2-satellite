@@ -18,19 +18,11 @@ const DotIcon = () => {
 
 export function UserButton() {
 	const { signOut } = useAuth();
+	const router = useRouter();
 
 	const handleLogout = () => {
-		// expect an error here
-		try {
-			signOut({ redirectUrl: "/login" });
-			window.location.href = process.env
-				.NEXT_PUBLIC_CLERK_SIGN_IN_URL as string;
-		} catch (error) {
-			console.error("Error logging out:", error);
-		} finally {
-			window.location.href = process.env
-				.NEXT_PUBLIC_CLERK_SIGN_IN_URL as string;
-		}
+		signOut();
+		router.push(process.env.NEXT_PUBLIC_CLERK_SIGN_IN_URL as string);
 	};
 
 	return (
