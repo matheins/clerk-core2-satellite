@@ -28,7 +28,7 @@ export default async function AuthProvider({
 			// does not work: Error: Functions cannot be passed directly to Client Components unless you explicitly expose it by marking it with "use server"
 			// domain={(url) => url.host}
 			domain={domain}
-			isSatellite={isSatellite ?? undefined}
+			isSatellite={isSatellite}
 			afterSignOutUrl={process.env.NEXT_PUBLIC_CLERK_SIGN_IN_URL as string}
 		>
 			{children}
