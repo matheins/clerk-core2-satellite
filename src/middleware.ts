@@ -47,7 +47,13 @@ export default clerkMiddleware(
 
         const { userId, redirectToSignIn } = await auth();
 
-        if (!userId) return redirectToSignIn();
+        if (!userId) {
+            return redirectToSignIn(
+                {
+                    returnBackUrl: request.nextUrl.origin,
+                },
+            );
+        }
 
         const host = request.nextUrl.host;
         const { path, fullPath, searchParams } = parse(request);
